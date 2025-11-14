@@ -1,1242 +1,748 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Navya Jammalamadaka - Data Scientist & Engineer</title>
-    <meta name="description" content="Data Scientist and Software Engineer specializing in AI/ML solutions">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #8B6914;
-            --primary-dark: #6B5010;
-            --secondary: #D4A574;
-            --accent: #C19A6B;
-            --dark: #1a1a1a;
-            --darker: #0d0d0d;
-            --text: #ffffff;
-            --text-muted: #b8b8b8;
-            --border: #333;
-        }
-
-        body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background: var(--darker);
-            color: var(--text);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(26, 26, 26, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(139, 105, 20, 0.3);
-            border-bottom: 1px solid var(--primary);
-        }
-
-        nav .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 1.25rem 3rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-brand {
-            font-size: 1.75rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 3rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            position: relative;
-            letter-spacing: 0.5px;
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--primary);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            transition: width 0.3s;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, rgba(13, 13, 13, 0.9) 0%, rgba(26, 26, 26, 0.95) 100%),
-                        url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(139,105,20,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-            padding: 8rem 2rem 4rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 20% 50%, rgba(139, 105, 20, 0.15) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 80%, rgba(193, 154, 107, 0.15) 0%, transparent 50%);
-        }
-
-        .hero .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 4.5rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--primary), var(--accent), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: fadeInUp 0.8s ease;
-        }
-
-        .hero .tagline {
-            font-size: 1.75rem;
-            margin-bottom: 1rem;
-            color: var(--text);
-            font-weight: 600;
-            animation: fadeInUp 0.8s ease 0.2s both;
-        }
-
-        .hero .subtitle {
-            font-size: 1.25rem;
-            margin-bottom: 3rem;
-            color: var(--text-muted);
-            animation: fadeInUp 0.8s ease 0.4s both;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            animation: fadeInUp 0.8s ease 0.6s both;
-        }
-
-        .btn {
-            padding: 1rem 3rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            transition: all 0.3s;
-            display: inline-block;
-            font-size: 1.1rem;
-            letter-spacing: 0.5px;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: var(--text);
-            box-shadow: 0 10px 30px rgba(139, 105, 20, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(139, 105, 20, 0.4);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-        }
-
-        .btn-secondary:hover {
-            background: var(--primary);
-            color: var(--darker);
-        }
-
-        /* Sections */
-        section {
-            padding: 6rem 3rem;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            position: relative;
-            padding-bottom: 1.5rem;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(90deg, transparent, var(--primary), transparent);
-            border-radius: 2px;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 1.2rem;
-            margin-bottom: 4rem;
-        }
-
-        /* About Section */
-        .about-content {
-            display: grid;
-            grid-template-columns: 400px 1fr;
-            gap: 4rem;
-            align-items: start;
-        }
-
-        .about-image-card {
-            background: var(--dark);
-            border-radius: 20px;
-            overflow: hidden;
-            border: 2px solid var(--primary);
-            box-shadow: 0 20px 60px rgba(139, 105, 20, 0.3);
-            position: sticky;
-            top: 100px;
-        }
-
-        .about-img {
-            width: 100%;
-            height: 500px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--darker);
-            font-size: 8rem;
-        }
-
-        .about-info-box {
-            padding: 2rem;
-            background: rgba(139, 105, 20, 0.1);
-        }
-
-        .info-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 0.75rem 0;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .info-item:last-child {
-            border-bottom: none;
-        }
-
-        .info-item i {
-            color: var(--primary);
-            width: 24px;
-            font-size: 1.1rem;
-        }
-
-        .info-item strong {
-            color: var(--primary);
-            min-width: 100px;
-        }
-
-        .about-text {
-            background: var(--dark);
-            padding: 3rem;
-            border-radius: 20px;
-            border: 1px solid var(--border);
-        }
-
-        .about-text h3 {
-            font-size: 2rem;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-        }
-
-        .about-text p {
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
-            font-size: 1.05rem;
-        }
-
-        .interests-tag {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            background: rgba(139, 105, 20, 0.2);
-            color: var(--primary);
-            border-radius: 20px;
-            margin: 0.5rem 0.5rem 0.5rem 0;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        /* Skills */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2.5rem;
-        }
-
-        .skill-category {
-            background: var(--dark);
-            padding: 2.5rem;
-            border-radius: 20px;
-            border: 1px solid var(--border);
-            transition: all 0.3s;
-        }
-
-        .skill-category:hover {
-            border-color: var(--primary);
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(139, 105, 20, 0.2);
-        }
-
-        .skill-category h4 {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .skill-item {
-            margin-bottom: 1.75rem;
-        }
-
-        .skill-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.75rem;
-            font-weight: 600;
-            color: var(--text);
-        }
-
-        .skill-bar {
-            height: 10px;
-            background: rgba(139, 105, 20, 0.2);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .skill-progress {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            border-radius: 10px;
-            transition: width 1.5s ease;
-            box-shadow: 0 0 10px rgba(139, 105, 20, 0.5);
-        }
-
-        /* Experience & Projects Cards */
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2.5rem;
-        }
-
-        .card {
-            background: var(--dark);
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid var(--border);
-            transition: all 0.4s;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary);
-            box-shadow: 0 20px 60px rgba(139, 105, 20, 0.3);
-        }
-
-        .card-img {
-            height: 250px;
-            background: linear-gradient(135deg, rgba(139, 105, 20, 0.3), rgba(193, 154, 107, 0.3));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            font-size: 5rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card-content {
-            padding: 2rem;
-        }
-
-        .card-category {
-            display: inline-block;
-            padding: 0.4rem 1.25rem;
-            background: rgba(139, 105, 20, 0.2);
-            color: var(--primary);
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 700;
-            margin-bottom: 1.25rem;
-            letter-spacing: 0.5px;
-        }
-
-        .card-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--text);
-        }
-
-        .card-description {
-            color: var(--text-muted);
-            font-size: 1rem;
-            line-height: 1.7;
-        }
-
-        .card-meta {
-            display: flex;
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid var(--border);
-            font-size: 0.95rem;
-            color: var(--text-muted);
-        }
-
-        /* Certifications */
-        .cert-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-        }
-
-        .cert-card {
-            background: var(--dark);
-            padding: 2.5rem 2rem;
-            border-radius: 20px;
-            border: 1px solid var(--border);
-            text-align: center;
-            transition: all 0.3s;
-        }
-
-        .cert-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(139, 105, 20, 0.2);
-        }
-
-        .cert-icon {
-            width: 90px;
-            height: 90px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-            color: var(--darker);
-            font-size: 2.5rem;
-            box-shadow: 0 10px 30px rgba(139, 105, 20, 0.3);
-        }
-
-        .cert-title {
-            font-weight: 700;
-            margin-bottom: 0.75rem;
-            color: var(--text);
-            font-size: 1.1rem;
-        }
-
-        .cert-issuer {
-            color: var(--primary);
-            font-size: 0.95rem;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
-        .cert-date {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        /* Contact */
-        .contact-section {
-            background: var(--dark);
-            padding: 5rem 3rem;
-            border-radius: 30px;
-            border: 2px solid var(--primary);
-            text-align: center;
-            max-width: 900px;
-            margin: 0 auto;
-            box-shadow: 0 20px 60px rgba(139, 105, 20, 0.3);
-        }
-
-        .contact-title {
-            font-size: 3rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1rem;
-        }
-
-        .contact-subtitle {
-            color: var(--text-muted);
-            font-size: 1.2rem;
-            margin-bottom: 3rem;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .social-link {
-            width: 70px;
-            height: 70px;
-            background: rgba(139, 105, 20, 0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            font-size: 1.75rem;
-            transition: all 0.3s;
-            text-decoration: none;
-            border: 2px solid transparent;
-        }
-
-        .social-link:hover {
-            background: var(--primary);
-            color: var(--darker);
-            transform: translateY(-8px) scale(1.1);
-            box-shadow: 0 15px 40px rgba(139, 105, 20, 0.4);
-            border-color: var(--accent);
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Responsive */
-        @media (max-width: 1200px) {
-            .cards-grid, .skills-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hero h1 {
-                font-size: 2.75rem;
-            }
-
-            .hero .tagline {
-                font-size: 1.35rem;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-
-            .about-image-card {
-                position: relative;
-                top: 0;
-            }
-
-            .cards-grid, .skills-grid, .cert-grid {
-                grid-template-columns: 1fr;
-            }
-
-            section {
-                padding: 4rem 1.5rem;
-            }
-
-            nav .container {
-                padding: 1rem 1.5rem;
-            }
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-    </style>
-</head>
-<body>
-    <!-- Navigation -->
-    <nav id="navbar">
-        <div class="container">
-            <div class="nav-brand">NJ</div>
-            <ul class="nav-links">
-                <li><a href="#home" class="active">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#certifications">Certifications</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container">
-            <h1>Navya Jammalamadaka</h1>
-            <p class="tagline">Data Scientist | AI/ML Solutions Expert</p>
-            <p class="subtitle">Transforming complex data into actionable insights through innovative machine learning solutions and scalable data engineering</p>
-            <div class="hero-buttons">
-                <a href="#about" class="btn btn-primary">Explore My Work</a>
-                <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+   <meta charset="utf-8">
+   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+   <title>Navya Jammalamadaka</title>
+   <meta content="" name="descriptison">
+   <meta content="" name="keywords">
+
+   <!-- Favicons -->
+   <link href="assets/img/logo.png" rel="icon">
+   <link href="assets/img/logo.png" rel="apple-touch-icon">
+
+   <!-- Vendor CSS Files -->
+   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+   <link href="assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+   <link href="assets/vendor/ionicons/css/ionicons.min.css" rel="stylesheet">
+   <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+   <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
+   <!-- Template Main CSS File -->
+   <link href="assets/css/style.css" rel="stylesheet">
+ </head>
+ <body id="page-top">
+
+   <!-- ======= Header/ Navbar ======= -->
+   <nav class="navbar navbar-b navbar-expand-md fixed-top navbar-reduce" id="mainNav">
+     <div class="container">
+
+       <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault" aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
+         <span></span>
+         <span></span>
+         <span></span>
+       </button>
+       <div class="navbar-collapse collapse justify-content-end" id="navbarDefault">
+         <ul class="navbar-nav">
+          
+           <li class="nav-item">
+             <a class="nav-link js-scroll" href="#home">Home</a>
+           </li>
+           <li class="nav-item">
+             <a class="nav-link js-scroll" href="#about">About</a>
+           </li>
+           <li class="nav-item">
+             <a class="nav-link js-scroll" href="#certifications">Certifications</a>
+           </li>
+           <li class="nav-item">
+            <a class="nav-link js-scroll" href="#experience">Experience</a>
+          </li>
+           <li class="nav-item">
+             <a class="nav-link js-scroll active" href="#projects">Projects</a>
+           
+           <li class="nav-item">
+             <a class="nav-link js-scroll" href="#contact">Contact</a>
+           </li>
+ 		  
+       
+      
+         </ul>
+       </div>
+     </div>
+   </nav>
+
+   <!-- ======= Intro Section ======= -->
+   <div id="home" class="intro route bg-image" style="background-image: url(assets/img/nyu.jpg)">
+     <div class="overlay-itro"></div>
+     <div class="intro-content display-table">
+       <div class="table-cell">
+         <div class="container">
+          
+           <h1 class="intro-title mb-2" style="font-family: cursive">Hi, I am Navya Jammalamadaka!</h1>
+
+           <p class="intro-subtitle"><span class="text-slider-items">I can advice you on a AI/ML solutions, A Data Scientist, Software Engineering Enthusiast</span><strong class="text-slider">I can advice you on a AI/ML solutions</strong><span class="typed-cursor">|</span></p>
+
+           <!--<p class="pt-3"><a class="btn btn-primary btn js-scroll px-4" href="#about" role="button">About Me</a></p> -->
+         </div>
+       </div>
+     </div>
+   </div><!-- End Intro Section -->
+
+   <main id="main">
+
+     <!-- ======= About Section ======= -->
+     <section id="about" class="about-mf sect-pt4 route">
+       <div class="container">
+         <div class="row">
+           <div class="col-sm-12">
+             <div class="box-shadow-full">
+               <div class="row">
+                 <div class="col-md-6">
+                   <div class="row">
+                     <div class="col-sm-6 col-md-5">
+                       <div class="about-img">
+                         <img src="assets/img/photo.jpg" class="img-fluid rounded b-shadow-a" alt="">
+                       </div>
+                     </div>
+                     <div class="col-sm-6 col-md-7">
+                       <div class="about-info">
+                         <p><span class="title-s">Name: </span> <span>Navya Sravani Jammalamadaka</span></p>
+                         <p><span class="title-s">Profile: </span> <span>An aspiring Data Scientist  and Software Engineering Enthusiast </span></p>
+                         <p><span class="title-s">Email: </span> <span>nsj9072@nyu.edu</span></p>
+
+ 			<p><span class="title-s">Current Location: </span> <span> San Jose, California, United States</span></p>
+
+ 			
+                       
+                      </div>
+                     </div>
+                   </div>
+                   <div class="skill-mf">
+                     <h5 class="title-left">Skills</h5>
+ 					<p></p>
+                     <span>Python</span> <span class="pull-right">90%</span>
+                      <div class="progress">
+                       <div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                     </div>
+                     <span>Data Structures & Algorithms</span> <span class="pull-right">90%</span>
+                     <div class="progress">
+                      <div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>  
+                       
+ 	             <span>Machine Learning</span> <span class="pull-right">90%</span>
+                     <div class="progress">
+                       <div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                     </div>
+ 	             <span>Data Visualization</span> <span class="pull-right">90%</span>
+                     <div class="progress">
+                       <div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                     </div>
+                     <span>Databases</span> <span class="pull-right">90%</span>
+                      <div class="progress">
+                       <div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                     </div>
+                     <span>Frontend & Backend</span> <span class="pull-right">80%</span>
+                      <div class="progress">
+                       <div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                     </div>
+                     <span>Cloud & Containerization</span> <span class="pull-right">80%</span>
+                      <div class="progress">
+                       <div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                     </div> Language Processing</span> <span class="pull-right">80%</span>
+                     <div class="progress">
+                       <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                     </div>
+                     
+                     <span>Computer Vision</span> <span class="pull-right">70%</span>
+                     <div class="progress">
+                       <div class="progress-bar" role="progressbar" style="width: 70%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                     </div>
+                     <span>Statistics</span> <span class="pull-right">70%</span>
+                     <div class="progress">
+                       <div class="progress-bar" role="progressbar" style="width: 70%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                     </div>
+
+                   </div>
+                 </div>
+                 <div class="col-md-6">
+                   <div class="about-me pt-4 pt-md-0">
+                     <div class="title-box-2">
+                       <h5 class="title-left">
+                         About me
+                       </h5>
+                     </div>
+ 		    <p>
+          Hello, I am Navya! I am a Masters Graduate with a major in Computer Engineering at <a href="https://www.nyu.edu">New York University.</a>  </p>
+ 			  <p>
+          My passion for technology grew as I went more into Machine learning and Data Engineering. These technologies help us make imaginative arrangements to transform ourselves and improve things for the better. I enjoy taking on new problems, and  I aspire to be a Data Engineer. I have proven expertise in designing and implementing robust data pipelines, optimizing data infrastructure, and leveraging cutting-edge technologies to drive actionable insights. I am  strong at programming skills in Python, Java, and SQL, along with my  proficiency in a wide range of data frameworks and tools. I am committed to delivering scalable and efficient data solutions in fast-paced, collaborative environments.
+                     </p>
+        <p class="title-s">Interests: Data Science, Data Engineering, Data Visualization, Machine Learning, Software Engineering, Software Development, Data Analytics, Business Analytics, Business Intelligence, Deep Learning.</p>             
+                     <p>
+ 		    I graduated in 2020 with a Bachelor of Technology (B.Tech) in Electronics and Communications Engineering 
+ 		    from KL University, Vijayawada, India.
+                     </p>
+                     <p>
+ 		    In my last professional experience, I worked on complex data analysis, feature-engineering and, built data pipelines to solve the workflows.
+                     </p>
+ 		    <p class="title-s">Skills:</p>
+ 		    <p> Languages: Python, Java, C, C#, C++, R, Go, Data Structures, Algorithms, Scala, Rust</p>
+         <p>Data & ML Frameworks: Hadoop, Spark, Hive, Airflow, PyTorch, Keras, Pandas, NumPy, SciPy, TensorFlow, Power BI, Tableau </p>
+         <p>Web Technologies: React, Nodejs, Typescript, HTML, CSS, PostgreSQL, MySQL, NoSQL, MongoDB, Oracle DB, DynamoDB </p>
+         <p>Cloud & Containerization Platforms: Amazon Web Services, GCP, Microsoft Azure, Docker, Kubernetes, Google BigQuery</p>
+                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+     </section><!-- End About Section -->
+
+     <!-- ======= Portfolio Section ======= -->
+     <section id="certifications" class="portfolio-mf sect-pt4 route">
+       <div class="container">
+         <div class="row">
+           <div class="col-sm-12">
+             <div class="title-box text-center">
+               <h3 class="title-a">
+                 Certifications
+               </h3>
+               
+             </div>
+           </div>
+         </div>
+
+
+         <div class="row">
+           <div class="col-md-3">
+             <div class="work-box">
+
+               <a href="assets/img/ds.jpg" data-gall="portfolioGallery" class="venobox vbox-item">
+
+                 <div class="work-img">
+                   <img src="assets/img/ds.jpg" alt="" class="img-fluid">
+                 </div>
+                 </a><div class="work-content"><a href="assets/img/ds.jpg" data-gall="portfolioGallery" class="venobox vbox-item">
+                   </a><div class="row"><a href="assets/img/ds.jpg" data-gall="portfolioGallery" class="venobox vbox-item">
+                     </a><div class="col-sm-10"><a href="assets/img/ds.jpg" data-gall="portfolioGallery" class="venobox vbox-item">
+
+                       <h2 class="w-title">Data Science with IBM</h2>
+                       </a><div class="w-more"><a href="assets/img/ds.jpg" data-gall="portfolioGallery" class="venobox vbox-item">
+
+                         <span class="w-ctegory"></span></a><a href="https://ds.com/" target="_blank">Data Science with IBM</a> / <span class="w-date">May, 2020</span>
+
+
+                       </div>
+
+                     </div>
+                     <div class="col-sm-2">
+                       <div class="w-like">
+ 					  	<a href="https://coursera.org/share/7a6ad53125df80855aa028de651becd9" target="_blank">
+                         <span class="ion-ios-plus-outline"></span></a>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+
+             </div>
+ 			</div>
+
+
+           <div class="col-md-3">
+             <div class="work-box">
+
+               <a href="assets/img/dv.jpg" data-gall="portfolioGallery" class="venobox vbox-item">
+
+                 <div class="work-img">
+                   <img src="assets/img/dv.jpg" alt="" class="img-fluid">
+                 </div>
+                 </a><div class="work-content"><a href="assets/img/dv.jpg" data-gall="portfolioGallery" class="venobox vbox-item">
+                   </a><div class="row"><a href="assets/img/dv.jpg" data-gall="portfolioGallery" class="venobox vbox-item">
+                     </a><div class="col-sm-10"><a href="assets/img/dv.jpg" data-gall="portfolioGallery" class="venobox vbox-item">
+
+                       <h2 class="w-title">Data Visualization from UC Davis</h2>
+                       </a><div class="w-more"><a href="assets/img/dv.jpg" data-gall="portfolioGallery" class="venobox vbox-item">
+
+                         <span class="w-ctegory"></span></a><a href="https://www.coursera.org/" target="_blank">Coursera</a> / <span class="w-date">June, 2022</span>
+
+
+                       </div>
+
+                     </div>
+                     <div class="col-sm-2">
+                       <div class="w-like">
+ 					  	<a href="https://coursera.org/share/f40bed90c01c4f716a31ef980d8bdc0a" target="_blank">
+                         <span class="ion-ios-plus-outline"></span></a>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+
+             </div>
+ 			</div>
+
+
+
+ 			 <div class="col-md-3">
+             <div class="work-box">
+
+               <a href="assets/img/ml.png" data-gall="portfolioGallery" class="venobox vbox-item">
+
+                 <div class="work-img">
+                   <img src="assets/img/ml.png" alt="" class="img-fluid">
+                 </div>
+                 </a><div class="work-content"><a href="assets/img/ml.png" data-gall="portfolioGallery" class="venobox vbox-item">
+                   </a><div class="row"><a href="assets/img/ml.png" data-gall="portfolioGallery" class="venobox vbox-item">
+                     </a><div class="col-sm-10"><a href="assets/img/ml.png" data-gall="portfolioGallery" class="venobox vbox-item">
+
+                       <h2 class="w-title">Machine Learning from Stanford Online</h2>
+                       </a><div class="w-more"><a href="assets/img/ml.png" data-gall="portfolioGallery" class="venobox vbox-item">
+
+                         <span class="w-ctegory"></span></a><a href="https://www.coursera.org/" target="_blank">Coursera</a> / <span class="w-date">July, 2020</span>
+
+
+                       </div>
+
+                     </div>
+                     <div class="col-sm-2">
+                       <div class="w-like">
+ 					  	<a href="https://coursera.org/share/dd5ceef95254c242fdc53919a692f768" target="_blank">
+                         <span class="ion-ios-plus-outline"></span></a>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+
+             </div>
+           </div>
+           <div class="col-md-3">
+            <div class="work-box">
+
+              <a href="assets/img/cs.jpg" data-gall="portfolioGallery" class="venobox vbox-item">
+
+                <div class="work-img">
+                  <img src="assets/img/cs.jpg" alt="" class="img-fluid">
+                </div>
+                </a><div class="work-content"><a href="assets/img/cs.jpg" data-gall="portfolioGallery" class="venobox vbox-item">
+                  </a><div class="row"><a href="assets/img/cs.jpg" data-gall="portfolioGallery" class="venobox vbox-item">
+                    </a><div class="col-sm-10"><a href="assets/img/cs.jpg" data-gall="portfolioGallery" class="venobox vbox-item">
+
+                      <h2 class="w-title">Accelerated Computer Science</h2>
+                      </a><div class="w-more"><a href="assets/img/cs.jpg" data-gall="portfolioGallery" class="venobox vbox-item">
+
+                        <span class="w-ctegory"></span></a><a href="https://www.coursera.org/" target="_blank">Coursera</a> / <span class="w-date">Dec, 2020</span>
+
+
+                      </div>
+
+                    </div>
+                    <div class="col-sm-2">
+                      <div class="w-like">
+              <a href="https://coursera.org/share/decb46dadfa496fa3a8c8ab51c81ebdd" target="_blank">
+                        <span class="ion-ios-plus-outline"></span></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
             </div>
-        </div>
-    </section>
+          </div>
+ 		      
 
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <p class="section-subtitle">Masters Graduate in Computer Engineering from New York University</p>
+             </div>
+ 			</div>
+
+         </div>
+       </div>
+     </section><!-- End Portfolio Section -->
+
+<!-- ======= Experience Section ======= -->
+<section id="experience" class="blog-mf sect-pt4 route">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="title-box text-center">
+          <h3 class="title-a">
+            Experience
+          </h3>
+          
+          
+        </div>
+      </div>
+    </div>
+
+    
+
+    <div class="row">
+      <div class="col-md-16">
+        <div class="card card-blog">
+          
+
+          <div class="card-body">
+            <div class="card-category-box">
+              
+            </div>
+
+            <h3 class="card-title"><target="_blank">
+BCG X- Data Science Virtual Intern, Aug 2023- Sep 2023</a></h3>
+            <p class="card-description">
+              • Data Analysis: Analyzed churn data for PowerCo's SME segment, revealing 9.7% churn across 14,606 customers.</p>
+             <p> • Feature Engineering: Engineered features using Pandas, NumPy, Seaborn, and Matplotlib for predictive 
+              modeling, showcasing that yearly consumption, forecasted consumption, and net margin are primary churn drivers.</p>
+              <p>• Data-Driven Insights: Recommended a targeted 20% discount strategy for high-churn probability, high-value 
+              customers, enhancing retention efforts.            </p>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card card-blog">
             
-            <div class="about-content">
-                <div class="about-image-card">
-                    <div class="about-img">
-                        <i class="fas fa-user-circle"></i>
-                    </div>
-                    <div class="about-info-box">
-                        <div class="info-item">
-                            <i class="fas fa-graduation-cap"></i>
-                            <div>
-                                <strong>Education</strong>
-                                <div>MS, New York University</div>
-                            </div>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <h4><i class="fas fa-laptop-code"></i> Web Development</h4>
-                    <div class="skill-item">
-                        <div class="skill-header">
-                            <span>React & Node.js</span>
-                            <span>80%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 80%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-header">
-                            <span>HTML/CSS/JavaScript</span>
-                            <span>85%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 85%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-header">
-                            <span>RESTful APIs</span>
-                            <span>85%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 85%"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Certifications -->
-    <section id="certifications">
-        <div class="container">
-            <h2 class="section-title">Certifications</h2>
-            <p class="section-subtitle">Professional certifications from leading institutions</p>
-            
-            <div class="cert-grid">
-                <div class="cert-card">
-                    <div class="cert-icon">
-                        <i class="fas fa-certificate"></i>
-                    </div>
-                    <div class="cert-title">Data Science Professional</div>
-                    <div class="cert-issuer">IBM via Coursera</div>
-                    <div class="cert-date">May 2020</div>
-                </div>
-                <div class="cert-card">
-                    <div class="cert-icon">
-                        <i class="fas fa-chart-bar"></i>
-                    </div>
-                    <div class="cert-title">Data Visualization</div>
-                    <div class="cert-issuer">UC Davis - Coursera</div>
-                    <div class="cert-date">June 2022</div>
-                </div>
-                <div class="cert-card">
-                    <div class="cert-icon">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <div class="cert-title">Machine Learning</div>
-                    <div class="cert-issuer">Stanford - Coursera</div>
-                    <div class="cert-date">July 2020</div>
-                </div>
-                <div class="cert-card">
-                    <div class="cert-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <div class="cert-title">Accelerated CS</div>
-                    <div class="cert-issuer">Coursera</div>
-                    <div class="cert-date">December 2020</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Experience -->
-    <section id="experience" style="background: rgba(139, 105, 20, 0.03);">
-        <div class="container">
-            <h2 class="section-title">Professional Experience</h2>
-            <p class="section-subtitle">Building impactful solutions across data science and engineering</p>
-            
-            <div class="cards-grid">
-                <div class="card">
-                    <div class="card-img">
-                        <i class="fab fa-microsoft"></i>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-category">FULL-TIME</div>
-                        <h3 class="card-title">Microsoft - Software Engineer</h3>
-                        <div class="card-meta">
-                            <span><i class="far fa-calendar"></i> May 2024 - Present · 1 yr 7 mos</span>
-                            <span><i class="fas fa-map-marker-alt"></i> Greater Seattle Area</span>
-                        </div>
-                        <p class="card-description">
-                            <strong>Windows Cloud Experiences - Cloud PC on Web:</strong> Building large-scale data and integration systems powering Azure Virtual Desktop and Cloud PC environments. Designing real-time telemetry pipelines, distributed data infrastructure, and collaborative Web Client features. Architecting APIs and systems connecting millions of environments with focus on scalability, security, and reliability.
-                        </p>
-                        <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border);">
-                            <strong style="color: var(--primary); font-size: 0.9rem;">Tech Stack:</strong>
-                            <span style="color: var(--text-muted); font-size: 0.9rem;"> C#, JavaScript, Azure, Distributed Systems, Real-time Telemetry</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-img">
-                        <i class="fas fa-rocket"></i>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-category">FOUNDING ENGINEER</div>
-                        <h3 class="card-title">Pervaziv AI - Software Engineer</h3>
-                        <div class="card-meta">
-                            <span><i class="far fa-calendar"></i> Jan 2024 - May 2024 · 5 mos</span>
-                            <span><i class="fas fa-map-marker-alt"></i> San Francisco Bay Area</span>
-                        </div>
-                        <p class="card-description">
-                            As a Founding Engineer, established the company's technical foundation from the ground up. Developed innovative React features for dashboarding and code editors, enhancing user experience. Collaborated with Backend, ML, and security engineers to build the cloud product. Built AI agents and MCP-style servers enabling context-aware, autonomous workflows with safety and observability.
-                        </p>
-                        <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border);">
-                            <strong style="color: var(--primary); font-size: 0.9rem;">Tech Stack:</strong>
-                            <span style="color: var(--text-muted); font-size: 0.9rem;"> React.js, Node.js, AI/ML Integration, Cloud Infrastructure</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-img">
-                        <i class="fas fa-chart-network"></i>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-category">VIRTUAL INTERNSHIP</div>
-                        <h3 class="card-title">BCG X - Data Science Intern</h3>
-                        <div class="card-meta">
-                            <span><i class="far fa-calendar"></i> Aug 2023 - Sep 2023</span>
-                        </div>
-                        <p class="card-description">
-                            Analyzed churn data for PowerCo's SME segment covering 14,606 customers, revealing 9.7% churn rate. Engineered features using Pandas, NumPy, Seaborn, and Matplotlib for predictive modeling. Recommended targeted 20% discount strategy for high-churn probability customers, enhancing retention efforts.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-img">
-                        <i class="fas fa-laptop-code"></i>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-category">INTERNSHIP</div>
-                        <h3 class="card-title">TCR Inc. - Web Applications Engineer</h3>
-                        <div class="card-meta">
-                            <span><i class="far fa-calendar"></i> July 2023 - Dec 2023</span>
-                        </div>
-                        <p class="card-description">
-                            Led development of engaging front-end designs achieving 10% increase in user engagement. Achieved average bug resolution time under 24 hours through efficient testing protocols. Implemented Auth0 authentication for robust security and access controls.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-img">
-                        <i class="fas fa-university"></i>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-category">RESEARCH</div>
-                        <h3 class="card-title">New York University - Research Data Scientist</h3>
-                        <div class="card-meta">
-                            <span><i class="far fa-calendar"></i> Sep 2021 - May 2023</span>
-                        </div>
-                        <p class="card-description">
-                            Automated Inventory Management System for NYU Library using ML and decision trees, achieving 95% accuracy in inventory prediction. Designed data pipelines reducing data delivery time by 40%. Automated Tableau dashboard generation for trend analysis.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-img">
-                        <i class="fas fa-database"></i>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-category">FULL-TIME</div>
-                        <h3 class="card-title">General Trading Company - Data Engineer</h3>
-                        <div class="card-meta">
-                            <span><i class="far fa-calendar"></i> Aug 2020 - Aug 2021</span>
-                        </div>
-                        <p class="card-description">
-                            Enhanced data processing efficiency by 20% through optimized ETL pipelines. Achieved 30% reduction in data retrieval time through finely tuned data models. Maintained 100% compliance score during annual security audits.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects -->
-    <section id="projects">
-        <div class="container">
-            <h2 class="section-title">Featured Projects</h2>
-            <p class="section-subtitle">Innovative solutions leveraging data science and machine learning</p>
-            
-            <div class="cards-grid">
-                <div class="card">
-                    <div class="card-img">
-                        <i class="fas fa-chart-bar"></i>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-category">DATA VISUALIZATION</div>
-                        <h3 class="card-title">Employment Now!</h3>
-                        <p class="card-description">
-                            Interactive dashboard focusing on NYC boroughs unemployment data. Provides actionable recommendations for participants to get back into employment during economic recession. Features comprehensive data analysis and visualization.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-img">
-                        <i class="fas fa-eye"></i>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-category">DEEP LEARNING</div>
-                        <h3 class="card-title">Object Detection with DL</h3>
-                        <p class="card-description">
-                            Implemented COCO Keypoint Person Detector with ResNet50-FPN base network. Used pretrained Mask R-CNN and fine-tuning with Detectron II to detect silhouettes of people and objects with high accuracy.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-img">
-                        <i class="fas fa-image"></i>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-category">NLP & COMPUTER VISION</div>
-                        <h3 class="card-title">Hateful Memes Detection</h3>
-                        <p class="card-description">
-                            Multimodal hate speech detection using Facebook AI challenge dataset. Built classification model to maximize accuracy and extended as a service where users can upload memes for real-time hateful content detection.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-img">
-                        <i class="fas fa-car"></i>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-category">WEB DEVELOPMENT</div>
-                        <h3 class="card-title">Online Car Rental System</h3>
-                        <p class="card-description">
-                            Created relational database management system for car rental company. Built website using HTML, CSS, connected to MySQL via PHP. Implemented security features including password encryption and XSS protection.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-img">
-                        <i class="fas fa-comments"></i>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-category">AI & NLP</div>
-                        <h3 class="card-title">Chronic Kidney Disease Chatbot</h3>
-                        <p class="card-description">
-                            Developed AI-based chatbot using NLTK library to handle queries regarding Chronic Kidney Disease. Bot analyzes text from medical articles and provides intelligent responses to user questions.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-img">
-                        <i class="fas fa-passport"></i>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-category">BIG DATA</div>
-                        <h3 class="card-title">US Visa Application Analysis</h3>
-                        <p class="card-description">
-                            Comprehensive analysis of US visa applications using Spark, SparkML, and SparkSQL. Presented trends in visa applications worldwide, analyzing visa decisions, employment patterns, and visa types.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" style="background: rgba(139, 105, 20, 0.03);">
-        <div class="container">
-            <div class="contact-section">
-                <h2 class="contact-title">Let's Connect</h2>
-                <p class="contact-subtitle">Open to opportunities in Data Science, Machine Learning, and Data Engineering</p>
+  
+            <div class="card-body">
+              <div class="card-category-box">
                 
-                <div style="margin: 2rem 0;">
-                    <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.8;">
-                        I'm always interested in hearing about new opportunities, collaborations, or just connecting with fellow data enthusiasts. Feel free to reach out!
-                    </p>
-                </div>
-
-                <div class="social-links">
-                    <a href="https://www.linkedin.com/in/navya-jammalamadaka/" target="_blank" class="social-link" title="LinkedIn">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a href="https://github.com/navyajammalamadaka" target="_blank" class="social-link" title="GitHub">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="mailto:nsj9072@nyu.edu" class="social-link" title="Email">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                </div>
+              </div>
+  
+              <h3 class="card-title"><target="_blank">
+  TCR Inc. - Web Applications Engineer Intern, July 2023- Present</a></h3>
+              <p class="card-description">
+                • Front-end Development: Led the development of engaging front-end website designs, leading to an impressive 10% 
+                increase in user engagement with TCR's services, offerings, and website traffic.</p>
+               <p> • Bug Resolution: Played a pivotal role in the software development process by overseeing code reviews and testing 
+                protocols for back-end functionalities and achieved an average bug resolution time of under 24 hours.
+                </p>
+                <p>• Identity Access Management: Directed the development of cutting-edge React applications while implementing robust 
+                  integration with auth0 authentication, protecting site security, and introducing accurate access controls.</p>
+  
             </div>
+          </div>
         </div>
-    </section>
 
-    <script>
-        // Smooth scroll and active nav link
-        const navLinks = document.querySelectorAll('.nav-links a');
-        const sections = document.querySelectorAll('section');
-
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (scrollY >= sectionTop - 200) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').slice(1) === current) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        // Animate skill bars on scroll
-        const observerOptions = {
-            threshold: 0.5
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const skillBars = entry.target.querySelectorAll('.skill-progress');
-                    skillBars.forEach(bar => {
-                        const width = bar.style.width;
-                        bar.style.width = '0';
-                        setTimeout(() => {
-                            bar.style.width = width;
-                        }, 100);
-                    });
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.skill-category').forEach(category => {
-            observer.observe(category);
-        });
-    </script>
-</body>
-</html>    </div>
-                        <div class="info-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div>
-                                <strong>Location</strong>
-                                <div>San Jose, California</div>
-                            </div>
-                        </div>
-                        <div class="info-item">
-                            <i class="fas fa-envelope"></i>
-                            <div>
-                                <strong>Email</strong>
-                                <div>nsj9072@nyu.edu</div>
-                            </div>
-                        </div>
-                    </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card card-blog">
+              
+    
+              <div class="card-body">
+                <div class="card-category-box">
+                  
                 </div>
-
-                <div class="about-text">
-                    <h3>Professional Journey</h3>
-                    <p>Hello! I'm Navya, a passionate data scientist and engineer with a Master's degree in Computer Engineering from New York University. My journey in technology has been driven by a deep fascination with how data and machine learning can transform industries and solve real-world problems.</p>
-                    
-                    <p>I specialize in designing and implementing robust data pipelines, optimizing data infrastructure, and leveraging cutting-edge AI/ML technologies to drive actionable insights. With strong programming skills in Python, Java, and SQL, combined with proficiency in frameworks like Spark, TensorFlow, and AWS, I deliver scalable and efficient data solutions.</p>
-                    
-                    <p>My professional experience spans data engineering, machine learning model development, and full-stack development, where I've consistently delivered measurable impact—from reducing data processing times by 40% to achieving 95% accuracy in predictive models.</p>
-                    
-                    <div style="margin-top: 2rem;">
-                        <h4 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.3rem;">Areas of Expertise</h4>
-                        <span class="interests-tag">Data Science</span>
-                        <span class="interests-tag">Machine Learning</span>
-                        <span class="interests-tag">Data Engineering</span>
-                        <span class="interests-tag">Deep Learning</span>
-                        <span class="interests-tag">Software Development</span>
-                        <span class="interests-tag">Business Intelligence</span>
-                        <span class="interests-tag">Data Analytics</span>
-                        <span class="interests-tag">Cloud Computing</span>
-                    </div>
-                </div>
+    
+                <h3 class="card-title"><target="_blank">
+    New York University- Research Data Scientist, Sep 2021- May 2023</a></h3>
+                <p class="card-description">
+                  •  Machine Learning: Automated Inventory Management System for NYU Library using data science techniques and decision 
+                  trees, achieving a 95% accuracy in inventory prediction, and boosting students’ book engagement rate by 10%.
+                  </p>
+                 <p> • Data Engineering: Designed and implemented data pipelines to efficiently stream data from the university's data warehouses. This optimization resulted in a significant 40% reduction in data delivery time. As a result, the process of generating Tableau dashboards was automated, facilitating the analysis of trends in the company's collaboration with the university.
+                  </p>
+                 
+              </div>
             </div>
-        </div>
-    </section>
+          </div>
 
-    <!-- Skills Section -->
-    <section id="skills" style="background: rgba(139, 105, 20, 0.03);">
-        <div class="container">
-            <h2 class="section-title">Technical Skills</h2>
-            <p class="section-subtitle">Comprehensive expertise across the data science and engineering stack</p>
-            
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h4><i class="fas fa-code"></i> Programming</h4>
-                    <div class="skill-item">
-                        <div class="skill-header">
-                            <span>Python</span>
-                            <span>90%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 90%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-header">
-                            <span>Java & SQL</span>
-                            <span>85%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 85%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-header">
-                            <span>Data Structures & Algorithms</span>
-                            <span>90%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 90%"></div>
-                        </div>
-                    </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card card-blog">
+              
+    
+              <div class="card-body">
+                <div class="card-category-box">
+                  
                 </div>
+    
+                <h3 class="card-title"><target="_blank">
+    General Trading Company - Data Engineer, Aug 2020-Aug 2021</a></h3>
+                <p class="card-description">
+                  • Data Pipelines: Enhanced data processing efficiency by 20%, streamlined ETL pipelines and parallel processing.
+                  </p>
+                 <p> • Data Modelling: Achieved a 30% reduction in data retrieval time for crucial financial reports through the implementation 
+                  of finely tuned data models and targeted indexing strategies.
+                  </p>
+                  <p>• Data Visualization: Elevated stakeholder satisfaction among finance teams by 25%, evidenced by their positive 
+                    feedback, due to the creation of impactful and user-friendly data visualizations using Tableau.</p>
+                    <p>• Data Security: Ensured a flawless 100% compliance score during annual audits by meticulously showcasing the 
+                      company's strict adherence to stringent data security and privacy standards
+                      .</p>
+    
+              </div>
+            </div>
+          </div>
 
-                <div class="skill-category">
-                    <h4><i class="fas fa-brain"></i> Machine Learning</h4>
-                    <div class="skill-item">
-                        <div class="skill-header">
-                            <span>ML Algorithms</span>
-                            <span>90%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 90%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-header">
-                            <span>Deep Learning</span>
-                            <span>80%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 80%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-header">
-                            <span>NLP & Computer Vision</span>
-                            <span>75%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 75%"></div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="skill-category">
-                    <h4><i class="fas fa-chart-line"></i> Data Visualization</h4>
-                    <div class="skill-item">
-                        <div class="skill-header">
-                            <span>Tableau</span>
-                            <span>90%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 90%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-header">
-                            <span>Power BI</span>
-                            <span>85%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 85%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-header">
-                            <span>Data Analytics</span>
-                            <span>90%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 90%"></div>
-                        </div>
-                    </div>
-                </div>
+     
 
-                <div class="skill-category">
-                    <h4><i class="fas fa-database"></i> Data Engineering</h4>
-                    <div class="skill-item">
-                        <div class="skill-header">
-                            <span>Spark & Hadoop</span>
-                            <span>85%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 85%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-header">
-                            <span>ETL Pipelines</span>
-                            <span>90%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 90%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-header">
-                            <span>SQL & NoSQL Databases</span>
-                            <span>90%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 90%"></div>
-                        </div>
-                    </div>
-                </div>
+     <!-- ======= Blog Section ======= -->
+     <section id="projects" class="blog-mf sect-pt4 route">
+       <div class="container">
+         <div class="row">
+           <div class="col-sm-12">
+             <div class="title-box text-center">
+               <h3 class="title-a">
+                 Projects
+               </h3>
+               
+               
+             </div>
+           </div>
+         </div>
 
-                <div class="skill-category">
-                    <h4><i class="fas fa-cloud"></i> Cloud & DevOps</h4>
-                    <div class="skill-item">
-                        <div class="skill-header">
-                            <span>AWS & Azure</span>
-                            <span>80%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 80%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-header">
-                            <span>Docker & Kubernetes</span>
-                            <span>80%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 80%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-header">
-                            <span>CI/CD Pipelines</span>
-                            <span>75%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 75%"></div>
-                        </div>
-                    
+         
+
+         <div class="row">
+           <div class="col-md-4">
+             <div class="card card-blog">
+               <div class="card-img">
+                 <a href="https://github.com/navyajammalamadaka/Employment-Now---An-analysis-on-improving-unemployment-in-NYC-Boroughs" target="_blank"><img src="assets/img/project1.jpg" alt="" class="img-fluid"></a>
+               </div>
+
+               <div class="card-body">
+                 <div class="card-category-box">
+                   <div class="card-category">
+                     <h6 class="category"><a href="https://github.com/navyajammalamadaka/Employment-Now---An-analysis-on-improving-unemployment-in-NYC-Boroughs" target="_blank" role="button">Data Visualization</h6>
+                   </div>
+                 </div>
+
+                 <h3 class="card-title"><a href="https://github.com/navyajammalamadaka/Employment-Now---An-analysis-on-improving-unemployment-in-NYC-Boroughs" target="_blank">
+ 		Employment Now!</a></h3>
+                 <p class="card-description">
+                Employment Now is an interactive Dashboard,  focuses exclusively on New York City boroughs, and provides recommendations that will help its participants back into employment as we move into a new recession. 
+                 </p>
+
+               </div>
+             </div>
+           </div>
+
+
+             <div class="col-md-4">
+               <div class="card card-blog">
+                 <div class="card-img">
+                   <a href="https://github.com/navyajammalamadaka/Object-Detection-with-Detectron2-and-Facebook-AI" target="_blank"><img src="assets/img/project2.jpg" alt="" class="img-fluid"></a>
+                 </div>
+
+                 <div class="card-body">
+                   <div class="card-category-box">
+                     <div class="card-category">
+                       <h6 class="category"><a href="https://github.com/navyajammalamadaka/Object-Detection-with-Detectron2-and-Facebook-AI" target="_blank" role="button">Deep Learning</h6>
+                     </div>
+                   </div>
+
+                   <h3 class="card-title"><a href="image.png" target="_blank">
+       Object Detection with DL</a></h3>
+                   <p class="card-description">
+                    Used the COCO Keypoint Person Detector model with a ResNet50-FPN base network. Pretrained Mask R-CNN aand trained used fine-tuning to detect th silhouettes of people and objects (balloons) with Detectron II and Facebook AI on the test data.
+                   </p>
+
+                 </div>
+               </div>
+             </div>	
+
+           <div class="col-md-4">
+             <div class="card card-blog">
+               <div class="card-img">
+                 <a href="https://github.com/navyajammalamadaka/HatefulMemes" target="_blank"><img src="assets/img/project3.png" alt="" class="img-fluid"></a>
+               </div>
+
+               <div class="card-body">
+                 <div class="card-category-box">
+                   <div class="card-category">
+                     <h6 class="category"><a href="https://github.com/navyajammalamadaka/HatefulMemes" target="_blank" role="button">Prediction</h6>
+                   </div>
+                 </div>
+
+                 <h3 class="card-title"><a href="https://github.com/navyajammalamadaka/HatefulMemes" target="_blank">
+ 		Hateful Memes Prediction</a></h3>
+                 <p class="card-description">
+                  The challenge was initially organized by Facebook AI to detect hate speech in multimodal memes.The project began with an objective to maximize the classification accuracy.The model is then extended as a service where users can upload a meme and the application would inform the user if the meme is hateful or not.
+                 </p>
+
+               </div>
+             </div>
+           </div>
+
+ 		  				          <div class="col-md-4">
+
+             <div class="card card-blog">
+               <div class="card-img">
+                 <a href="https://github.com/navyajammalamadaka/Online-Car-Rental---Web-Application" target="_blank">
+ 				<img src="assets/img/project4.jpg" alt="" class="img-fluid"></a>
+               </div>
+
+
+               <div class="card-body">
+                 <div class="card-category-box">
+                   <div class="card-category">
+                     <h6 class="category"><a href="https://github.com/navyajammalamadaka/Online-Car-Rental---Web-Application" target="_blank" role="button">Development</h6>
+                   </div>
+                 </div>
+
+                 <h3 class="card-title"><a href="https://github.com/navyajammalamadaka/Online-Car-Rental---Web-Application" target="_blank">
+
+ 		Car Rental Website</a></h3>
+                 <p class="card-description">
+                  Created a relational database management system for a car rental company. Built a website using HTML, CSS, and connected it to MySQL database using PHP via SQL injection. Implemented security features like- Password Encryption, Cross-Site Scripting and User Authentication.       </p>
+
+               </div>
+             </div>
+           </div>
+
+
+         <div class="col-md-4">
+             <div class="card card-blog">
+               <div class="card-img">
+                 <a href="https://github.com/navyajammalamadaka/Chronic-Kidney-Disease-AI-ChatBot" target="_blank">
+ 				<img src="assets/img/project5.jpg" alt="" class="img-fluid"></a>
+               </div>
+
+
+               <div class="card-body">
+                 <div class="card-category-box">
+                   <div class="card-category">
+                     <h6 class="category"> <a href="https://github.com/navyajammalamadaka/Chronic-Kidney-Disease-AI-ChatBot" target="_blank" role="button">AI & NLP</h6>
+                   </div>
+                 </div>
+
+                 <h3 class="card-title"><a href="https://github.com/navyajammalamadaka/Chronic-Kidney-Disease-AI-ChatBot" target="_blank">
+
+ 		Chronic Kidney disease Chatbot</a></h3>
+                 <p class="card-description">
+                  Developed a simple AI-based Chatbot to handle specific queries regarding Chronic Kidney Disease using NLTK library. The bot analyses text provided to it from an article as input and answers the questions asked by the user.
+                 </p>
+
+               </div>
+             </div>
+           </div><div class="col-md-4">
+             <div class="card card-blog">
+               <div class="card-img">
+                 <a href="https://github.com/navyajammalamadaka/US-Visa-Application-Analysis" target="_blank">
+ 				<img src="assets/img/project6.jpeg" alt="" class="img-fluid"></a>
+               </div>
+
+               <div class="card-body">
+                 <div class="card-category-box">
+                   <div class="card-category">
+                     <h6 class="category"><a href="https://github.com/navyajammalamadaka/US-Visa-Application-Analysis" target="_blank" role="button">Big Data </h6>
+                   </div>
+                 </div>
+
+                 <h3 class="card-title"><a href="https://github.com/navyajammalamadaka/US-Visa-Application-Analysis" target="_blank">
+
+ 		US Visa Application Analysis</a></h3>
+                 <p class="card-description">
+                   The implementation details included trend in US visa applications throughout the world. Presented an analysis using Spark, SparkML and SparkSQL to answer questions related to visa decisions, employment and visa types.
+                 </p>
+
+               </div>
+             </div>
+           </div></div> 
+
+
+           <div class="row"></div>
+
+           <div class="row">
+ 		  		  				          <div class="col-md-4">
+             <div class="card card-blog">
+               <div class="card-img">
+                 <a href="https://github.com/navyajammalamadaka/Emoji-Creator-with-OpenCV-Haarcascade" target="_blank">
+ 				<img src="assets/img/project7.jpg" alt="" class="img-fluid"></a>
+               </div>
+
+
+               <div class="card-body">
+                 <div class="card-category-box">
+                   <div class="card-category">
+                     <h6 class="category"><a href="https://github.com/navyajammalamadaka/Emoji-Creator-with-OpenCV-Haarcascade" target="_blank" role="button">ML, DL, Development</h6>
+                   </div>
+                 </div>
+
+                 <h3 class="card-title"><a href="https://github.com/navyajammalamadaka/Emoji-Creator-with-OpenCV-Haarcascade" target="_blank">
+
+ 		Emoji Creator</a></h3>
+                 <p class="card-description">
+                  Classified human facial expressions to filter and map corresponding emojis or avatars. Built and trained the deep learning model to classify facial expressions from the images. Built a GUI to capture live videos using Webcam and converting it to emoji avatar.
+                 </p>
+
+               </div>
+             </div>
+           </div>
+           <div class="row"></div>
+ 		  
+
+ 		  </div>
+ 		</div>		
+       </div>
+     </section>
+ 
+
+     <!-- ======= Contact Section ======= -->
+     <section class="paralax-mf footer-paralax bg-image sect-mt4 route" style="background-image: url(assets/img/backfround.jpg)">
+       <div class="overlay-mf"></div>
+       <div class="container">
+         <div class="row">
+           <div class="col-sm-12">
+             <div class="contact-mf">
+               <div id="contact" class="box-shadow-full">
+                 <div class="row">
+                   <div class="col-md-6">
+
+                   </div>
+                   <div class="col-md-6">
+                     <div class="title-box-2 pt-4 pt-md-0">
+                       <h5 class="title-center">
+                         Get in Touch
+                       </h5>
+                     </div>
+                     
+                     <div class="socials">
+                       <ul>
+                         <li><a href="https://www.linkedin.com/in/navya-jammalamadaka/" target="_blank"><span class="ico-circle"><i class="ion-social-linkedin"></i></span></a></li>
+                         <li><a href="mailto:nsj9072@nyu.edu" target="_blank"><span class="ico-circle"><i class="ion-android-mail"></i></span></a></li>
+                         <li><a href="https://github.com/navyajammalamadaka" target="_blank"><span class="ico-circle"><i class="ion-social-github"></i></span></a></li>
+ 		       
+                       </ul>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+
+
+     </section><!-- End Contact Section -->
+
+
+   <a href="#" class="back-to-top" style="display: inline;"><i class="fa fa-chevron-up"></i></a>
+
+
+   <!-- Vendor JS Files -->
+   <script src="assets/vendor/jquery/jquery.min.js"></script>
+   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+   <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+   <script src="assets/vendor/php-email-form/validate.js"></script>
+   <script src="assets/vendor/waypoints/jquery.waypoints.min.js"></script>
+   <script src="assets/vendor/counterup/jquery.counterup.min.js"></script>
+   <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+   <script src="assets/vendor/typed.js/typed.min.js"></script>
+   <script src="assets/vendor/venobox/venobox.min.js"></script>
+
+   <!-- Template Main JS File -->
+   <script src="assets/js/main.js"></script>
+
+
+
+
+ </main><style type="text/css" data-typed-js-css="true">
+         .typed-cursor{
+           opacity: 1;
+         }
+         .typed-cursor.typed-cursor--blink{
+           animation: typedjsBlink 0.7s infinite;
+           -webkit-animation: typedjsBlink 0.7s infinite;
+                   animation: typedjsBlink 0.7s infinite;
+         }
+         @keyframes typedjsBlink{
+           50% { opacity: 0.0; }
+         }
+         @-webkit-keyframes typedjsBlink{
+           0% { opacity: 1; }
+           50% { opacity: 0.0; }
+           100% { opacity: 1; }
+         }
+       </style></body>
+
+      </html>
